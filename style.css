@@ -1,0 +1,68 @@
+* {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  box-sizing: border-box;
+  background:transparent;
+}
+
+p {
+  display:inline;
+}
+
+html, body {
+  height: 100vh;
+  margin: 0;
+}
+
+button {
+  background-color: grey;
+  border:solid black;
+
+}
+
+#atomCount {
+  font-size: 24px;
+}
+
+#topbar {
+  height: 10%;
+  border-bottom: solid grey 2px;
+}
+
+#bottombar {
+  border-top: solid grey 2px;
+  height: 10%;
+}
+
+.tab {
+  height: 80%;
+  width: 10
+  0%;
+}
+
+#game {
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+#intro {
+  height: 100%;
+  width: 100%;
+  background-color: teal;
+}
+
+.navbtn {
+  height: 100%;
+  width: 20%;
+  color: blue;
+  display:inline;
+}
+
+.researchinit {
+  display: none;
+}
