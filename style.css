@@ -24,8 +24,25 @@ button {
 
 }
 
+.tech {
+  height:100px;
+  width:100px;
+  font-size:14px;
+  text-align:center;
+  background-color:teal;
+  border:solid 1px grey;
+}
+
+#gasbox {
+  display:none;
+}
+
+#atombox {
+  border-bottom: 1px grey solid;
+}
+
 #atomCount {
-  font-size: 24px;
+  font-size: 300%;
 }
 
 #topbar {

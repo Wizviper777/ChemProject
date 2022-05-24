@@ -16,12 +16,34 @@
       <div id='topbar'>
         <h1 id="atomCount">Atoms: 0</h1>
       </div>
+      <!-- LAB TAB-->
       <div class='tab' id='lab'>
+	<div id='atombox'>
         <button onclick="clickAtom()">Form Atom</button>
         <button onclick="upgradeClick()">Upgrade Lab (10 atoms)</button>
         <p id="clickPowerTracker">Lab Power: 1</p>
+	</div>
+
+	<div id='gasbox'>
+	<p id='atmcount'>Your Boostium is at 1atm</p>
+	<p id='multcount'>(X1 multiplier to atom gain)</p>
+	<button id='tmp' onclick='upgradeGas("tmp")'>Raise Temperature(25000 atoms)</button>
+	<button id='vol' onclick='upgradeGas("vol")'>Lower Volume(25000 atoms)</button>
+	<button id='mol' onclick='upgradeGas("mol")'>Increase Moles(25000 atoms)</button>
+	</div>
+
+	<div id='duraniumbox'>
+	<p id='duraniumCount'>You have 0 Duranium</p><br>
+	<p id='duraniumTracker'>At your activation energy, your particle collider can make 0.1 duranium/sec</p><br> 
+	<p>Lower Activation Energy:</p>
+	<button onclick='upAE("atoms")' id='aeatoms'>100000 atoms</button>
+	<button onclick='upAE("RP")' id='aeRP'>50000 RP</button>
+	</div>
       </div>
+
+      <!-- RESEARCH TAB-->
       <div class='tab' id='research'>
+	<div id='rpbox'>
         <p id='techIntro'>Your lab is quiet... If only you had more unobtanium...</p>
         <p id='researchTotal' class='researchinit'>You have 0 Research Points</p>
         <button onclick="buyResearcher()" id="researcherbtn" class='researchinit'>
@@ -29,8 +51,31 @@
         </button>
         <p id='researchTracker' class='researchinit'>0 Researchers making 0 Research/sec</p>
       </div>
+      <div id='techs' class='researchinit'>
+	      <div onclick='unlockTech("autoclick")' class='tech' id='autoclick'>Automatically Form Atoms(50RP)</div>
+	      <div onclick='unlockTech("autoupgrade")' class='tech' id='autoupgrade'>Automatically Upgrade Lab(100RP)</div>
+	      <div onclick='unlockTech("unlockgas")' class='tech' id='unlockgas'>Unlock Boostium(500RP)</div>
+	      <div onclick='unlockTech("duranium")' class='tech' id='unlockduranium'>Unlock Duranium(25K RP)</div>
+      </div>
+      <div id='drbox'>
+	      <div onclick='unlockTech("")' class='tech' id=''>Duranium Tech(100DR)</div>
+      </div>
+      </div>
+
+      <!-- QUANTUM TAB-->
+      <div class='tab' id='quantum'>
+	<div id='entropybox'>
+	<p id='EPcount'>You have 0 Entropy Points</p><br>
+	<p id='entropycount'>The system currently has 1 entropy. Reach infinity for an entropy point.</p>
+	<button onclick='resetEntropy()'>Reset Entropy</button>
+	<button onclick='upEntropy("EP")'>1EP</button>
+	<button onclick='upEntropy("DR")'>100DR</button>
+	</div>
+      </div>
+
+      <!-- BOTTOM BAR-->
       <div id='bottombar'>
-        <button class='navbtn' onclick='changeScene("lab")'>Lab</button><button class='navbtn' onclick='changeScene("research")'>Research</button><button class='navbtn'>Quantum</button><button class='navbtn'>Save</button><button class='navbtn'>Reset</button>
+        <button class='navbtn' onclick='changeScene("lab")'>Lab</button><button class='navbtn' onclick='changeScene("research")'>Research</button><button class='navbtn' onclick='changeScene("quantum")'>Quantum</button><button class='navbtn'>Save</button><button class='navbtn'>Reset</button>
       </div>
     </div>
     <script src='index.js'></script>
