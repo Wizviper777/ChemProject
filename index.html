@@ -7,10 +7,8 @@
 
   <body>
     <div id='intro'>
-      <p>Your lab is the first to discover how to make a brand new element- unobtanium. However, it is very difficult to manufacture. Great riches await you if you can manage to make one mole of it.<br>(6.02 * 10^23 atoms)</p>
-      <button onclick='startGame()' id='startbtn'>
-        Go!
-      </button>
+      <h4>Your lab is the first to discover how to make a brand new element- unobtanium. However, it is very difficult to manufacture. Great riches await you if you can manage to make one mole of it(6.02 * 10^23 atoms)</h4><br>
+      <button onclick='startGame()' id='startbtn'>Go!</button>
     </div>
     <div id='game'>
       <div id='topbar'>
@@ -39,6 +37,12 @@
 	<button onclick='upAE("atoms")' id='aeatoms'>100000 atoms</button>
 	<button onclick='upAE("RP")' id='aeRP'>50000 RP</button>
 	</div>
+
+	<div id='acidbasebox'>
+	<p id='APtracker'>Acid Power: 0</p> <p id='BPtracker'>Base Power:0</p>
+	<button id='upgradeacid'>Upgrade Acid</button>
+	<button id='upgradebase'>Upgrade Base</button>
+	</div>
       </div>
 
       <!-- RESEARCH TAB-->
@@ -55,22 +59,43 @@
 	      <div onclick='unlockTech("autoclick")' class='tech' id='autoclick'>Automatically Form Atoms(50RP)</div>
 	      <div onclick='unlockTech("autoupgrade")' class='tech' id='autoupgrade'>Automatically Upgrade Lab(100RP)</div>
 	      <div onclick='unlockTech("unlockgas")' class='tech' id='unlockgas'>Unlock Boostium(500RP)</div>
-	      <div onclick='unlockTech("duranium")' class='tech' id='unlockduranium'>Unlock Duranium(25K RP)</div>
+	      <div onclick='unlockTech("unlockduranium")' class='tech' id='unlockduranium'>Unlock Duranium(25K RP)</div>
+	      <div onclick='unlockTech("unlockacidbase")' class='tech' id='unlockacidbase'>Unlock Acids and Bases(1M RP)</div>
       </div>
       <div id='drbox'>
-	      <div onclick='unlockTech("")' class='tech' id=''>Duranium Tech(100DR)</div>
+	      <div onclick='unlockTech("unlockentropy")' class='tech dt' id='unlockentropy'>Unlock Entropy Sim(250DR)</div>
+	      <div onclick='unlockTech("unlockvoltaic")' class='tech dt' id='unlockvoltaic'>Unlock Voltaic Cell(10K DR)</div>
+	      <div onclick='unlockTech("unlockelectron")' class='tech dt' id='unlockelectron'>Unlock Electrons(100K DR)</div>
       </div>
       </div>
 
       <!-- QUANTUM TAB-->
       <div class='tab' id='quantum'>
+	<p id='quantumintro'>The secrets of quantum still lay unexplored...</p>
+
 	<div id='entropybox'>
 	<p id='EPcount'>You have 0 Entropy Points</p><br>
 	<p id='entropycount'>The system currently has 1 entropy. Reach infinity for an entropy point.</p>
 	<button onclick='resetEntropy()'>Reset Entropy</button>
-	<button onclick='upEntropy("EP")'>1EP</button>
-	<button onclick='upEntropy("DR")'>100DR</button>
+	<button onclick='upEntropy("EP")' id='entropyEP'>1EP</button>
+	<button onclick='upEntropy("DR")' id='entropyDR'>100DR</button>
 	</div>
+
+	<div id='voltaicbox'>
+	<p id='jouleCount'>You have 0 Joules</p>
+	<p id='voltaictracker'>Your voltaic cell is producing 10J/s</p>
+	<p id='voltaictimer'>Full discharge in 10s</p>
+	<button id='rechargebtn' onclick='recharge()'>Recharge</button>
+	<button id='voltaicspeed' onclick='upVoltaic("EP")'>Increase Speed(10EP)</button>
+	<button id='voltaicduration' onclick='upVoltaic("DR")'>Increase Charge(10000DR)</button>
+	</div>
+
+	<div id='electronbox'>
+	<p id='electronCount'>You have 0 electrons</p>
+	<p id='latticeenergy'>Current lattice energy:100</p>
+	<button id='electronClick' onclick='electronClick()'>Free Electron</button>
+	</div>
+
       </div>
 
       <!-- BOTTOM BAR-->

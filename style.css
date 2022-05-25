@@ -37,6 +37,10 @@ button {
   display:none;
 }
 
+#electronbox, #duraniumbox, #voltaicbox, #entropybox, #drbox, #acidbasebox {
+  display:none;
+}
+
 #atombox {
   border-bottom: 1px grey solid;
 }
@@ -71,6 +75,21 @@ button {
   height: 100%;
   width: 100%;
   background-color: teal;
+  display:flex;	
+  justify-content:center;
+  align-items:center;
+  flex-flow: column;
+}
+
+h4 {
+  font-size:150%;
+  text-align:center;
+}
+
+#startbtn {
+  width:8%;
+  height:3.5%;
+
 }
 
 .navbtn {
