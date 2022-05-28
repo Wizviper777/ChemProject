@@ -3,6 +3,7 @@
   <head>
     <title>How Big Is A Mole?</title>
     <link rel='stylesheet' href='style.css'>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
   </head>
 
   <body>
@@ -17,31 +18,40 @@
       <!-- LAB TAB-->
       <div class='tab' id='lab'>
 	<div id='atombox'>
-        <button onclick="clickAtom()">Form Atom</button>
-        <button onclick="upgradeClick()">Upgrade Lab (10 atoms)</button>
+        <button onclick="clickAtom()" class='atombtn'>Form Atom</button>
+        <button onclick="upgradeClick()" class='atombtn'>Upgrade Lab (10 atoms)</button>
         <p id="clickPowerTracker">Lab Power: 1</p>
 	</div>
 
 	<div id='gasbox'>
 	<p id='atmcount'>Your Boostium is at 1atm</p>
 	<p id='multcount'>(X1 multiplier to atom gain)</p>
-	<button id='tmp' onclick='upgradeGas("tmp")'>Raise Temperature(25000 atoms)</button>
-	<button id='vol' onclick='upgradeGas("vol")'>Lower Volume(25000 atoms)</button>
-	<button id='mol' onclick='upgradeGas("mol")'>Increase Moles(25000 atoms)</button>
+	<div id='gasups'>
+		<button id='tmp' class='gasbtn' onclick='upgradeGas("tmp")'>Raise Temperature<br>(25K atoms)</button>
+		<button class='gasbtn' id='vol' onclick='upgradeGas("vol")'>Lower Volume<br>(25K atoms)</button>
+		<button  class='gasbtn' id='mol' onclick='upgradeGas("mol")'>Increase Moles<br>(25K atoms)</button>
+	</div>
 	</div>
 
 	<div id='duraniumbox'>
-	<p id='duraniumCount'>You have 0 Duranium</p><br>
-	<p id='duraniumTracker'>At your activation energy, your particle collider can make 0.1 duranium/sec</p><br> 
-	<p>Lower Activation Energy:</p>
-	<button onclick='upAE("atoms")' id='aeatoms'>100000 atoms</button>
-	<button onclick='upAE("RP")' id='aeRP'>50000 RP</button>
+	<p id='duraniumCount'>You have 0 Duranium</p>
+	<p id='duraniumTracker'>At your activation energy, your particle collider can make 0.1 duranium/sec</p> 
+	<p style='color:blue'>Lower Activation Energy:</p>
+	<div id='aeups'>
+	<button onclick='upAE("atoms")' class='aebtn' id='aeatoms'>100K atoms</button>
+	<button onclick='upAE("RP")' class='aebtn' id='aeRP'>50K RP</button>
+	</div>
 	</div>
 
 	<div id='acidbasebox'>
-	<p id='APtracker'>Acid Power: 0</p> <p id='BPtracker'>Base Power:0</p>
-	<button id='upgradeacid'>Upgrade Acid</button>
-	<button id='upgradebase'>Upgrade Base</button>
+	<div id='abtrackers'>
+	<p id='acidtracker' style='color:red'>Your acid power is multiplying Joule gain by 1</p>
+	<p id='basetracker' style='color:blue'>Your base power is multiplying Duranium gain by 1</p>
+	</div>
+	<div id='abbtns'>
+	<button class='abbtn' onclick='buyAB("acid")' id='upgradeacid'>Upgrade Acid(1B atoms)</button>
+	<button class='abbtn' onclick='buyAB("base")' id='upgradebase'>Upgrade Base(1B atoms)</button>
+	</div>
 	</div>
       </div>
 
@@ -55,17 +65,23 @@
         </button>
         <p id='researchTracker' class='researchinit'>0 Researchers making 0 Research/sec</p>
       </div>
+      <div id='researchmain'>
       <div id='techs' class='researchinit'>
 	      <div onclick='unlockTech("autoclick")' class='tech' id='autoclick'>Automatically Form Atoms(50RP)</div>
 	      <div onclick='unlockTech("autoupgrade")' class='tech' id='autoupgrade'>Automatically Upgrade Lab(100RP)</div>
 	      <div onclick='unlockTech("unlockgas")' class='tech' id='unlockgas'>Unlock Boostium(500RP)</div>
 	      <div onclick='unlockTech("unlockduranium")' class='tech' id='unlockduranium'>Unlock Duranium(25K RP)</div>
 	      <div onclick='unlockTech("unlockacidbase")' class='tech' id='unlockacidbase'>Unlock Acids and Bases(1M RP)</div>
+	      <div onclick='unlockTech("autoentropy")' class='tech' id='autoentropy'>Automatically Reset Entropy(20M RP)</div>
+	      <div onclick='unlockTech("labspeed1")' class='tech' id='labspeed1'>Increase Lab Speed By X5(50K RP)</div>
+	      <div onclick='unlockTech("labspeed2")' class='tech' id='labspeed2'>Increase Lab Speed By X5 Again(10M RP)</div>
       </div>
       <div id='drbox'>
 	      <div onclick='unlockTech("unlockentropy")' class='tech dt' id='unlockentropy'>Unlock Entropy Sim(250DR)</div>
 	      <div onclick='unlockTech("unlockvoltaic")' class='tech dt' id='unlockvoltaic'>Unlock Voltaic Cell(10K DR)</div>
 	      <div onclick='unlockTech("unlockelectron")' class='tech dt' id='unlockelectron'>Unlock Electrons(100K DR)</div>
+	      <div onclick='unlockTech("autocharge")' class='tech dt' id='autocharge'>Automatically Charge Cell(1M DR)</div>
+      </div>
       </div>
       </div>
 
@@ -91,8 +107,8 @@
 	</div>
 
 	<div id='electronbox'>
-	<p id='electronCount'>You have 0 electrons</p>
-	<p id='latticeenergy'>Current lattice energy:100</p>
+	<p id='electronCount'>You have 0 electrons, raising atom gain to the power of 1</p>
+	<p id='latticeenergy'>Current lattice energy:100J</p>
 	<button id='electronClick' onclick='electronClick()'>Free Electron</button>
 	</div>
 
@@ -100,7 +116,7 @@
 
       <!-- BOTTOM BAR-->
       <div id='bottombar'>
-        <button class='navbtn' onclick='changeScene("lab")'>Lab</button><button class='navbtn' onclick='changeScene("research")'>Research</button><button class='navbtn' onclick='changeScene("quantum")'>Quantum</button><button class='navbtn'>Save</button><button class='navbtn'>Reset</button>
+        <button class='navbtn' onclick='changeScene("lab")'>Lab</button><button class='navbtn' onclick='changeScene("research")'>Research</button><button class='navbtn' onclick='changeScene("quantum")'>Quantum</button>
       </div>
     </div>
     <script src='index.js'></script>

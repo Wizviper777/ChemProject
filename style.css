@@ -41,17 +41,14 @@ button {
   display:none;
 }
 
-#atombox {
-  border-bottom: 1px grey solid;
-}
 
 #atomCount {
   font-size: 300%;
 }
 
 #topbar {
+  text-align:center;
   height: 10%;
-  border-bottom: solid grey 2px;
 }
 
 #bottombar {
@@ -86,6 +83,159 @@ h4 {
   text-align:center;
 }
 
+.dt {
+  background-color:green;
+}
+
+#techs {
+  height:100%;
+  width:50%;
+  display:flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+}
+
+#rpbox {
+  height:10%;
+  background-color:grey;
+  border-bottom:1px solid black;
+  display:flex;
+  flex-direction:column:
+  
+}
+
+#lab {
+  display:flex;
+  flex-direction:column;
+}
+
+#atombox {
+  height:25%;
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  justify-content:center;
+  align-items:center;
+  gap:5%;
+}
+
+.atombtn {
+  background-color:blue;
+  width:33.33%;
+  border:1px solid teal;
+}
+
+#clickPowerTracker {
+  color:green;
+}
+
+#gasbox {
+  display:none;
+  height:25%;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:2.5%;
+  text-align:center;
+}
+
+#atmcount {
+  color:green;
+}
+
+#multcount {
+  color:magenta;
+}
+
+#gasups {
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  gap:5%;
+}
+
+.gasbtn {
+  background-color:purple;
+  border:1px solid magenta;
+  width:30%;
+  height:100%;
+}
+
+#duraniumbox {
+  height:25%;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:2.5%;
+}
+
+#duraniumTracker {
+  color:blue;
+}
+
+#duraniumCount {
+  color:teal;
+}
+
+#aeups {
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  gap:5%;
+}
+
+.aebtn {
+  background-color:maroon;
+  font-size:133%;
+  border:1px solid red;
+  height:100%;
+  width:33.33%;
+}
+
+#acidbasebox {
+  height:25%;
+  flex-direction:column;
+  text-align:center;
+  justify-content:center;
+}
+
+#abtrackers {
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  gap:5%;
+}
+
+#abbtns {
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  gap:5%;
+}
+
+.abbtn {
+  background-color:orange;
+  border:1px solid yellow;
+}
+
+#researchmain {
+  height:90%;
+  width:100%;
+  display:flex;
+  flex-direction:row;
+}
+
+#drbox {
+  height:100%;
+  width:50%;
+  border-left:1px solid black;
+  display:none;
+  flex-direction:row;
+}
+
 #startbtn {
   width:8%;
   height:3.5%;
@@ -94,8 +244,8 @@ h4 {
 
 .navbtn {
   height: 100%;
-  width: 20%;
-  color: blue;
+  width: 33.333%;
+  background-color: blue;
   display:inline;
 }
 
