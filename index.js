@@ -4,7 +4,7 @@ let clickPower = 1;
 let researcherAmount = 0;
 let researcherPower = 0;
 let researcherCost = 1000;
-let RP = 5000000;
+let RP = 5000000000;
 let researchUnlocked = false;
 let autoclickEnabled = false;
 let autoupgradeEnabled = false;
@@ -25,6 +25,7 @@ let entropyUnlocked = false;
 let entropy = 1;
 let entropyspeed = 10;
 let EP = 50000;
+let EPmult = 1;
 let autoentropy = false;
 let voltaicUnlocked = false;
 let joules = 0;
@@ -37,6 +38,7 @@ let electroncost = 100;
 let atompow = 1;
 let acidpower = 0;
 let basepower = 0;
+let gametime = 0;
 
 
 function clickAtom() {
@@ -50,7 +52,7 @@ function upgradeClick() {
     atoms -= 10;
     clickPower++;
     document.getElementById("atomCount").innerText = "Atoms: " + format(atoms);
-    document.getElementById("clickPowerTracker").innerText = "Lab Power: " + clickPower;
+    document.getElementById("clickPowerTracker").innerText = "Lab Power: " + format(clickPower);
   }
 }
 
@@ -61,13 +63,13 @@ function changeScene(scene) {
   }
 	switch(scene) {   
   	case "lab":
-    	document.getElementById("lab").style.display = "block";
+    	document.getElementById("lab").style.display = "flex";
     	break;
     	case "research":
     	document.getElementById("research").style.display = "block";
 	break;
 	case "quantum":
-	document.getElementById("quantum").style.display = "block";
+	document.getElementById("quantum").style.display = "flex";
 	break;
   }
 }
@@ -91,6 +93,7 @@ function updateResources() {
 	 }
     }
   }
+  gametime++;
   updateText();
 }
 
@@ -98,8 +101,8 @@ function resetEntropy() {
   if(entropy == Infinity) {
 	entropy = 1;
 	updateText();
-	EP++;
-	document.getElementById("EPcount").innerText = "You have " + EP + " Entropy Points";
+	EP += EPmult;
+	document.getElementById("EPcount").innerText = "You have " + format(EP) + " Entropy Points";
   }
 }
 
@@ -125,19 +128,31 @@ function upEntropy(u) {
 	switch(u) {
 		case "EP":
 		if(EP >= entropycosts[0]) {
-		EP - entropycosts[0];
+		EP -= entropycosts[0];
 		entropyspeed *= 10;
 		entropycosts[0] *= 2;
-		document.getElementById('entropyEP').innerText = format(entropycosts[0]) + "EP";
+		document.getElementById('entropyEP').innerText = "Increase Speed(" + format(entropycosts[0]) + "EP)";
+ 		document.getElementById("EPcount").innerText = "You have " + format(EP) + " Entropy Points";
 		}
 		break;
 		case "DR":
 		if(duranium >= entropycosts[1]) {
 		entropyspeed *= 10;
 		entropycosts[1] *= 2;
-		document.getElementById('entropyDR').innerText = format(entropycosts[1]) + "DR";
+		document.getElementById('entropyDR').innerText = "Increase Speed(" + format(entropycosts[1]) + "DR)";
+  		document.getElementById("EPcount").innerText = "You have " + format(EP) + " Entropy Points";
 		}
 		break;
+	}
+}
+
+function end() {
+	if(atoms >= 6e23) {
+	document.getElementById("game").style.display = "none";
+	document.getElementById("end").style.display = "flex";
+	let mins = Math.floor(gametime / 60);
+	let secs = gametime % 60;
+	document.getElementById("completiontime").innerText = mins + "mins" + " " + secs + "secs"
 	}
 }
 
@@ -177,7 +192,7 @@ function unlockTech(tech) {
 		if(duranium >= 10000) {
 		duranium -= 10000;
 		document.getElementById(tech).style.display = "none";
-		document.getElementById("voltaicbox").style.display = "block";
+		document.getElementById("voltaicbox").style.display = "flex";
 		voltaicUnlocked = true;
 		}
 		break;
@@ -185,14 +200,14 @@ function unlockTech(tech) {
 		if(duranium >= 100000) {
 		duranium -= 100000;
 		document.getElementById(tech).style.display = "none";
-		document.getElementById("electronbox").style.display = "block";
+		document.getElementById("electronbox").style.display = "flex";
 		}
 		break;
 		case "unlockentropy":
 		if(duranium >= 250) {
 		duranium -= 250;
 		document.getElementById(tech).style.display = "none";
-		document.getElementById("entropybox").style.display = "block";
+		document.getElementById("entropybox").style.display = "flex";
 		document.getElementById("quantumintro").style.display = "none";
 		entropyUnlocked = true;
 		}
@@ -231,6 +246,21 @@ function unlockTech(tech) {
 		document.getElementById(tech).style.display = "none";
 		autocharge = true;
 		}
+		break;
+		case "entropyspeed1":
+		if(duranium >= 1000000) {
+		duranium -= 1000000;
+		document.getElementById(tech).style.display = "none";
+		EPmult *= 10;	
+		}
+		break;
+		case "entropyspeed2":
+		if(duranium >= 1e9) {
+		duranium -= 1e9;
+		document.getElementById(tech).style.display = "none";
+		EPmult *= 10;
+		}
+		break;
 	}
 }
 
@@ -312,7 +342,7 @@ function upgradeGas(u) {
 		break;
 	}
 	atmmult = ((Math.pow(2, gas[0][0])) * (Math.pow(2, gas[1][0])) * (Math.pow(2, gas[2][0])));
-	gasmult = Math.log(atmmult) + 1;
+	gasmult = Math.sqrt(atmmult);
 	document.getElementById("atmcount").innerText = "Your Boostium is at " + format(atmmult) + "atm";
 	document.getElementById("multcount").innerText = "(X" + format(Math.floor(gasmult * 10) / 10) + " multiplier to atom gain)";
 
@@ -327,6 +357,7 @@ function updateText() {
   document.getElementById('jouleCount').innerText = "You have " + format(joules) + " Joules";
   document.getElementById('voltaictracker').innerText = "Your voltaic cell is producing " + format(chargeSpeed) + "J/s";
   document.getElementById('voltaictimer').innerText = "Full discharge in " + Math.floor(charge / chargeSpeed) + "s";
+  document.getElementById("EPcount").innerText = "You have " + format(EP) + " Entropy Points";
 }
 
 let voltaiccost = [4, 25000];
@@ -337,7 +368,8 @@ function upVoltaic(u) {
 		chargeSpeed *= 2;
 		EP -= voltaiccost[0];
 		voltaiccost[0] *= 5;
-		document.getElementById("voltaicspeed").innerText = "Increase Speed(" + voltaiccost[0] + "EP)";
+		document.getElementById("voltaicspeed").innerText = "Increase Speed(" + format(voltaiccost[0]) + "EP)";
+		document.getElementById("EPcount").innerText = "You have " + format(EP) + " Entropy Points";
 		}
 		break;
 		case "DR":
@@ -345,7 +377,8 @@ function upVoltaic(u) {
 		maxCharge *= 2;
 		duranium -= voltaiccost[1];
 		voltaiccost[1] *= 5;
-		document.getElementById("voltaicduration").innerText = "Increase Charge(" + voltaiccost[1] + "DR)";
+		document.getElementById("voltaicduration").innerText = "Increase Charge(" + format(voltaiccost[1]) + "DR)";
+		document.getElementById("EPcount").innerText = "You have " + format(EP) + " Entropy Points";
 		}
 		break;
 	}
@@ -358,7 +391,7 @@ function electronClick() {
 	electroncost *= 10;
 	atompow =Math.floor(atompow*1.15 * 100) / 100;
 	document.getElementById('electronCount').innerText = "You have " + electrons + " electrons, raising atom gain to the power of " + atompow;
-	document.getElementById('latticeenergy').innerText = "Current lattice energy: " + electroncost + "J";
+	document.getElementById('latticeenergy').innerText = "Current lattice energy: " + format(electroncost) + " J";
 	}
 }
 
