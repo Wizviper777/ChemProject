@@ -1,10 +1,10 @@
-let atoms = 1e9;
-let totalatoms = 1000;
+let atoms = 0;
+let totalatoms = 0;
 let clickPower = 1;
 let researcherAmount = 0;
 let researcherPower = 0;
 let researcherCost = 1000;
-let RP = 1e12;
+let RP = 0;
 let researchUnlocked = false;
 let autoclickEnabled = false;
 let autoupgradeEnabled = false;
@@ -16,7 +16,7 @@ let gas = [
 ];
 let gasmult = 1;
 let gasboost = false;
-let duranium = 1e12;
+let duranium = 0;
 let AE = [
 	[0, 100000],
 	[0, 50000]
@@ -39,7 +39,7 @@ let chargeSpeed = 10;
 let autocharge = false;
 let electrons = 0;
 let electroncost = 100;
-let electronpow = 0.15;
+let electronpow = 0.20;
 let atompow = 1;
 let acidpower = 0;
 let basepower = 0;
@@ -183,8 +183,8 @@ function unlockTech(tech) {
 		}
 		break;
 		case "unlockgas":
-		if(RP >= 500) {
-		RP -= 500;
+		if(RP >= 1000) {
+		RP -= 1000;
 		gasUnlocked = true;
 		document.getElementById(tech).style.display = "none";
 		document.getElementById("gasbox").style.display = "flex";
@@ -235,8 +235,8 @@ function unlockTech(tech) {
 		}
 		break;
 		case "unlockacidbase":
-		if(RP >= 1000000) {
-		RP -= 1000000;
+		if(RP >= 1e10) {
+		RP -= 1e10;
 		document.getElementById(tech).style.display = "none";
 		document.getElementById("acidbasebox").style.display = "flex";
 		}
@@ -271,40 +271,40 @@ function unlockTech(tech) {
 		}
 		break;
 		case "entropyspeed1":
-		if(duranium >= 1000000) {
-		duranium -= 1000000;
+		if(duranium >= 1e9) {
+		duranium -= 1e9;
 		document.getElementById(tech).style.display = "none";
 		document.getElementById("entropyspeed2").style.display = "flex";
 		EPmult *= 10;	
 		}
 		break;
 		case "entropyspeed2":
-		if(duranium >= 1e9) {
-		duranium -= 1e9;
+		if(duranium >= 1e12) {
+		duranium -= 1e12;
 		document.getElementById(tech).style.display = "none";
 		EPmult *= 10;
 		}
 		break;
 		case "electronboost":
-		if(duranium >= 2.5e9) {
-		duranium -= 2.5e9;
+		if(duranium >= 1e12) {
+		duranium -= 1e12;
 		document.getElementById(tech).style.display = "none";
-		electronpow = 0.20;
-		atompow = electronpow * electrons + 1; 
+		electronpow = 0.3;
+		atompow = Math.sqrt(electronpow * electrons + 1); 
 		document.getElementById('electronCount').innerText = "You have " + electrons + " electrons, raising atom gain to the power of " + Math.floor(atompow * 10) / 10;
 		}
 		break;
 		case "jouleboost":
-		if(duranium >= 1e7) {
-		duranium -= 1e7;
+		if(duranium >= 2.5e8) {
+		duranium -= 2.5e8;
 		document.getElementById(tech).style.display = "none";
 		document.getElementById("chargeboost").style.display = "flex";
 		jouleboost = true;
 		}
 		break;
 		case "gasboost":
-		if(RP >= 1e7) {
-		RP -= 1e7;
+		if(RP >= 1e8) {
+		RP -= 1e8;
 		document.getElementById(tech).style.display = "none";
 		gasboost = true;
 		upgradeGas("");
@@ -358,7 +358,7 @@ function format(n) {
 	return Math.floor(n / 100) / 10 + "K";
 	}
 	else {
-	return Math.floor(n);
+	return Math.floor(n * 10) / 10;
 	}
 }
 
@@ -428,7 +428,7 @@ function updateText() {
   document.getElementById("researchTotal").innerText = "You have " + format(RP) + " Research Points";
   document.getElementById("researchTracker").innerText = researcherAmount + " Researchers making " + format(researcherPower) + " Research/sec";
   document.getElementById("duraniumCount").innerText = "You have " + format(Math.floor(duranium)) + " Duranium";
-  document.getElementById("duraniumTracker").innerText = "At your activation energy, your particle collider can make " + format(Math.floor(duraniumspeed * duraniummult * 10) / 10) + " duranium/sec";
+  document.getElementById("duraniumTracker").innerText = "At your activation energy, your particle collider can make " + format(duraniumspeed * duraniummult) + " duranium/sec";
   document.getElementById('jouleCount').innerText = "You have " + format(joules) + " Joules";
   if(jouleboost && chargeboost) {
   document.getElementById('voltaictracker').innerText = "Your voltaic cell is producing " + format(joulemult * chargeSpeed * (electrons + 1) * Math.sqrt(maxCharge)) + "J/s";
@@ -472,7 +472,7 @@ function electronClick() {
 	joules -= electroncost;
 	electrons++;
 	electroncost *= 10;
-	atompow = electronpow * electrons + 1; 
+	atompow = Math.sqrt(electronpow * electrons + 1); 
 	document.getElementById('electronCount').innerText = "You have " + electrons + " electrons, raising atom gain to the power of " + Math.floor(atompow*10) / 10;
 	document.getElementById('latticeenergy').innerText = "Current lattice energy: " + format(electroncost) + " J";
 	}
@@ -491,7 +491,6 @@ function buyAB(u) {
 		acidcost *= 2;
 		joulemult = Math.floor(joulemult * 1.5 * 100) / 100;
 		document.getElementById('upgradeacid').innerText = "Upgrade Acid(" + format(acidcost) + " atoms)";
-		document.getElementById('upgradebase').innerText = "Upgrade Base(" + format(basecost) + " atoms)";
 		document.getElementById('acidtracker').innerText = "Your acid power is multiplying Joule gain by " + format(joulemult);
 		}
 		break;
@@ -500,7 +499,6 @@ function buyAB(u) {
 		atoms -= basecost;
 		basecost *= 2;
 		duraniummult = Math.floor(duraniummult * 1.5 * 100) / 100;
-		document.getElementById('upgradeacid').innerText = "Upgrade Acid(" + format(acidcost) + " atoms)";
 		document.getElementById('upgradebase').innerText = "Upgrade Base(" + format(basecost) + " atoms)";
 		document.getElementById('basetracker').innerText = "Your base power is multiplying Duranium gain by " + format(duraniummult);
 		}

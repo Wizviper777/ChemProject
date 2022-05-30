@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>How Big Is A Mole?</title>
+    <title>Chemistry Clicker</title>
     <link rel='stylesheet' href='style.css'>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
   </head>
@@ -13,7 +13,7 @@
     </div>
 
     <div id='end'>
-      <h3>You have made a mole of unobtanium! Your Nobel Prize and other lucrative deals await you...</h3>
+      <h3>You have made a mole of unobtanium! Your Nobel Prize awaits you...</h3>
       <h3>Completion Time:</h3>
       <h3 id='completiontime'></h3>
     </div>
@@ -81,13 +81,13 @@
       <div id='techs' class='researchinit'>
 	      <div onclick='unlockTech("autoclick")' class='tech' id='autoclick'>Automatically Form Atoms(50RP)</div>
 	      <div onclick='unlockTech("autoupgrade")' class='tech' id='autoupgrade'>Automatically Upgrade Lab(100RP)</div>
-	      <div onclick='unlockTech("unlockgas")' class='tech' id='unlockgas'>Unlock Boostium(500RP)</div>
+	      <div onclick='unlockTech("unlockgas")' class='tech' id='unlockgas'>Unlock Boostium(1K RP)</div>
 	      <div onclick='unlockTech("unlockduranium")' class='tech' id='unlockduranium'>Unlock Duranium(25K RP)</div>
-	      <div onclick='unlockTech("unlockacidbase")' class='tech' id='unlockacidbase'>Unlock Acids and Bases(1M RP)</div>
+	      <div onclick='unlockTech("unlockacidbase")' class='tech' id='unlockacidbase'>Unlock Acids and Bases(10B RP)</div>
 	      <div onclick='unlockTech("autoentropy")' class='tech' id='autoentropy'>Automatically Reset Entropy(20M RP)</div>
 	      <div onclick='unlockTech("labspeed1")' class='tech' id='labspeed1'>Increase Lab Speed By X5(50K RP)</div>
 	      <div onclick='unlockTech("labspeed2")' class='tech' id='labspeed2'>Increase Lab Speed By X5 Again(10M RP)</div>
-	      <div onclick='unlockTech("gasboost")' class='tech' id='gasboost'>Increase Boostium Power(10M RP)</div>
+	      <div onclick='unlockTech("gasboost")' class='tech' id='gasboost'>Increase Boostium Power(100M RP)</div>
 	      <div onclick='unlockTech("entropyhelper")' class='tech' id='entropyhelper'>Double Atom Gain(5 EP)</div>
 	      <div onclick='unlockTech("entropyhelper2")' class='tech' id='entropyhelper2'>Double Atom Gain Again(25EP)</div> 
       </div>
@@ -97,10 +97,10 @@
 	      <div onclick='unlockTech("unlockvoltaic")' class='dt' id='unlockvoltaic'>Unlock Voltaic Cell(10K DR)</div>
 	      <div onclick='unlockTech("unlockelectron")' class='dt' id='unlockelectron'>Unlock Electrons(100K DR)</div>
 	      <div onclick='unlockTech("autocharge")' class='dt' id='autocharge'>Automatically Charge Cell(1M DR)</div>
-	      <div onclick='unlockTech("entropyspeed1")' class='dt' id='entropyspeed1'>Multiply Entropy Gain By 10(1M DR)</div>
-	      <div onclick='unlockTech("entropyspeed2")' class='dt' id='entropyspeed2'>Multiply Entropy Gain By 10 Again(1B DR)</div>
-	      <div onclick='unlockTech("electronboost")' class='dt' id='electronboost'>Boost Electron Power(2.5B DR)</div>
-	      <div onclick='unlockTech("jouleboost")' class='dt' id='jouleboost'>Joule gain is multiplied by electrons(10M DR)</div>
+	      <div onclick='unlockTech("entropyspeed1")' class='dt' id='entropyspeed1'>Multiply Entropy Gain By 10(1B DR)</div>
+	      <div onclick='unlockTech("entropyspeed2")' class='dt' id='entropyspeed2'>Multiply Entropy Gain By 10 Again(1T DR)</div>
+	      <div onclick='unlockTech("electronboost")' class='dt' id='electronboost'>Boost Electron Power(1T DR)</div>
+	      <div onclick='unlockTech("jouleboost")' class='dt' id='jouleboost'>Joule gain is multiplied by electrons(250M DR)</div>
 	      <div onclick='unlockTech("chargeboost")' class='dt' id='chargeboost'>Max Charge Also Increases Joule Speed(5B DR)</div>
       </div>
       </div>
@@ -108,7 +108,7 @@
 
       <!-- QUANTUM TAB-->
       <div class='tab' id='quantum'>
-	<p id='quantumintro'>The secrets of quantum still lay unexplored...</p>
+	<p id='quantumintro'>The secrets of the quantum world lay unexplored...</p>
 
 	<div id='entropybox'>
 	<p id='EPcount'>You have 0 Entropy Points</p><br>
@@ -124,7 +124,7 @@
 	<p id='voltaictimer'>Full discharge in 10s</p>
 	<button id='rechargebtn' onclick='recharge()'>Recharge</button>
 	<button id='voltaicspeed' class='voltbtn' onclick='upVoltaic("EP")'>Increase Speed(10EP)</button>
-	<button id='voltaicduration' class='voltbtn' onclick='upVoltaic("DR")'>Increase Charge(10000DR)</button>
+	<button id='voltaicduration' class='voltbtn' onclick='upVoltaic("DR")'>Increase Charge(10K DR)</button>
 	</div>
 
 	<div id='electronbox'>
