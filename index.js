@@ -22,6 +22,7 @@ let AE = [
 	[0, 50000]
 ];
 let duraniumspeed = 0.1;
+let duraniumunlocked = false;
 let entropyUnlocked = false;
 let entropy = 1;
 let entropyspeed = 10;
@@ -81,7 +82,9 @@ function changeScene(scene) {
 
 function updateResources() {
   RP += researcherPower; 
+  if(duraniumunlocked) {
   duranium += duraniummult * duraniumspeed;
+  }
   if(voltaicUnlocked && charge > 0) {
   if(jouleboost && chargeboost) {
   joules += joulemult * chargeSpeed * (electrons + 1) * Math.sqrt(maxCharge);
@@ -199,6 +202,7 @@ function unlockTech(tech) {
 		document.getElementById("duraniumbox").style.display = "flex";
 		document.getElementById("drbox").style.display = "flex";
 		document.getElementById("unlockentropy").style.display = "flex";
+		duraniumunlocked = true;
 		}
 		break;
 		case "unlockvoltaic":
